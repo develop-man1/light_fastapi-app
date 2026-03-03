@@ -241,7 +241,7 @@ async def greet():
     return {"status": "200"}
     
     
-@app.get("/users", response_model=UsersListResponse)
+@app.get("/users", response_model=UsersListResponse, status_code=status.HTTP_200_OK)
 async def get_users(db: AsyncSession = Depends(get_db)):
     
     service = UsersService(db)
@@ -251,7 +251,7 @@ async def get_users(db: AsyncSession = Depends(get_db)):
     return users
 
 
-@app.get("/users/name-age", response_model=list[UsersNameAgeResponse])
+@app.get("/users/name-age", response_model=list[UsersNameAgeResponse], status_code=status.HTTP_200_OK)
 async def get_users_list_by_age(age: int, db: AsyncSession = Depends(get_db)):
     
     service = UsersService(db)
@@ -261,7 +261,7 @@ async def get_users_list_by_age(age: int, db: AsyncSession = Depends(get_db)):
     return user_age
 
 
-@app.get("/users/name-country", response_model=list[UsersNameCountryResponse])
+@app.get("/users/name-country", response_model=list[UsersNameCountryResponse], status_code=status.HTTP_200_OK)
 async def get_users_list_country(country: str, db: AsyncSession = Depends(get_db)):
     
     service = UsersService(db)
@@ -271,7 +271,7 @@ async def get_users_list_country(country: str, db: AsyncSession = Depends(get_db
     return user_country
 
 
-@app.post("/users/create", response_model=UserResponse)
+@app.post("/users/create", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 async def create_user(data_user: UserCreate, db: AsyncSession = Depends(get_db)):
     
     service = UsersService(db)
@@ -281,7 +281,7 @@ async def create_user(data_user: UserCreate, db: AsyncSession = Depends(get_db))
     return new_user
 
 
-@app.get("/users/{id}", response_model=UserResponse)
+@app.get("/users/{id}", response_model=UserResponse, status_code=status.HTTP_200_OK)
 async def get_user_by_id(id: int, db: AsyncSession = Depends(get_db)):
     
     service = UsersService(db)
@@ -291,7 +291,7 @@ async def get_user_by_id(id: int, db: AsyncSession = Depends(get_db)):
     return user_id
 
 
-@app.get("/users/by-name/{name}", response_model=UserResponse)
+@app.get("/users/by-name/{name}", response_model=UserResponse, status_code=status.HTTP_200_OK)
 async def get_user_by_name(name: str, db: AsyncSession = Depends(get_db)):
     
     service = UsersService(db)
@@ -301,7 +301,7 @@ async def get_user_by_name(name: str, db: AsyncSession = Depends(get_db)):
     return user_name
 
 
-@app.put("/users/update/{id}", response_model=UserResponse)
+@app.put("/users/update/{id}", response_model=UserResponse, status_code=status.HTTP_200_OK)
 async def update_user(id: int, data_user: UserUpdate, db: AsyncSession = Depends(get_db)):
     
     service = UsersService(db)
@@ -311,7 +311,7 @@ async def update_user(id: int, data_user: UserUpdate, db: AsyncSession = Depends
     return user_put
 
 
-@app.delete("/users/delete/{id}", response_model=UserResponse)
+@app.delete("/users/delete/{id}", response_model=UserResponse, status_code=status.HTTP_200_OK)
 async def delete_user(id: int, db: AsyncSession = Depends(get_db)):
     
     service = UsersService(db)
